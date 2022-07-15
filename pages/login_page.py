@@ -2,9 +2,10 @@ from .base_page import BasePage
 from .locators import MainPageLocators
 from .locators import LoginPageLocators
 
-
+# Класс тестирования стрицы авторизации
 class LoginPage(BasePage):
 
+    # Проверяем наличие страцы авторизации, форм регистрации и авторизации
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()

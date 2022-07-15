@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
+# Добвление параметров типа браузера и языка при запуске теста
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome''',
                      help='Choose browser: chrome or firefox')
@@ -10,6 +11,7 @@ def pytest_addoption(parser):
                      help='  language')
 
 
+# Запуск браузера с переданными параметрами / -тесты- /  закрытие браузера
 @pytest.fixture(scope="function")
 def browser(request):
     language = request.config.getoption('language')
