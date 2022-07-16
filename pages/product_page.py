@@ -22,3 +22,15 @@ class PageObject(BasePage):
     # Проверка поиска элемента на странице
     def should_be_add_to_basket_link(self):
         assert self.is_element_present(*PageProductLocators.BTN_ADD_BSKT), "Add to basket link is not presented"
+
+    # Сообщение об успешном добавлении товара не появляется в течение заданного времени (4 сек)
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*PageProductLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    # Сообщение об успешном добавлении товара исчезает в течение заданного времени (4 сек)
+    def success_message_is_disappeared(self):
+        assert self.is_disappeared(*PageProductLocators.SUCCESS_MESSAGE), \
+            "Element is disappeared before"
+
+
