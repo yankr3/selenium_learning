@@ -100,30 +100,33 @@ class TestGuestsWorkWithBasket:
 # Добавление Гостем товара со страницы карточки товара с последующей регистрацией
 @pytest.mark.add_products_from_user
 class TestUsersAddToBasketFromProductPage:
-    # Возможность добавления товара в корзину и неизменность цены/названия товара после добавления, регистрация после добавления
+
+    # регистрация пользователя
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        mail = str(time.time()) + "@fakemail.org"
+        link = "http://selenium1py.pythonanywhere.com/accounts/login/"
+        login_page = LoginPage(browser, link)
+        login_page.open()
+        login_page.register_new_user(mail, '12345dcdvd5')
+        login_page.should_be_authorized_user()
+
+    # Возможность добавления товара в корзину и неизменность цены/названия товара после добавления
     @pytest.mark.need_review
     @pytest.mark.parametrize('link', links)
     def test_user_can_add_to_basket(self, browser, link):
-        mail = str(time.time()) + "@fakemail.org"
         page = PageObject(browser, link)
         page.open()
         page.add_to_basket()
         # page.solve_quiz_and_get_code()
         page.should_be_add_to_basket_link()
         page.check_price_and_name_product()
-        page.go_to_login_page()
-        login_page = LoginPage(browser, browser.current_url)
-        login_page.register_new_user(mail, '12345dcdvd5')
-        login_page.should_be_authorized_user()
 
-    # Отсутсвие сообщения об успешном добавлении товара в корзину до его добавления (его нет, тест проходит), регистрация после проверки
+    # Отсутсвие сообщения об успешном добавлении товара в корзину до его добавления (его нет, тест проходит)
     @pytest.mark.parametrize('link', links)
     def test_user_cant_see_success_message(self, browser, link):
         mail = str(time.time()) + "@fakemail.org"
         page = PageObject(browser, link)
         page.open()
         page.should_not_be_success_message()
-        page.go_to_login_page()
-        login_page = LoginPage(browser, browser.current_url)
-        login_page.register_new_user(mail, '12345dcdvd5')
-        login_page.should_be_authorized_user()
+
