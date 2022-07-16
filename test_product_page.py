@@ -97,7 +97,7 @@ class TestGuestsWorkWithBasket:
         basket_page.should_not_be_products_in_basket()
 
 
-# Добавление Гостем товара со страницы карточки товара с последующей регистрацией
+# Добавление авторизованным пользователем товара со страницы карточки товара
 @pytest.mark.add_products_from_user
 class TestUsersAddToBasketFromProductPage:
 
