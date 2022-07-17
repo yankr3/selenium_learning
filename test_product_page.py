@@ -25,7 +25,7 @@ class TestGuestsAddToBasketFromProductPage:
     # Возможность добавления товара в корзину и неизменность цены/названия товара после добавления
     @pytest.mark.need_review
     @pytest.mark.parametrize('link', links)
-    def test_guest_can_add_to_basket(self, browser, link):
+    def test_guest_can_add_product_to_basket (self, browser, link):
         page = PageObject(browser, link)
         page.open()
         page.add_to_basket()
@@ -99,7 +99,7 @@ class TestGuestsWorkWithBasket:
 
 # Добавление авторизованным пользователем товара со страницы карточки товара
 @pytest.mark.add_products_from_user
-class TestUsersAddToBasketFromProductPage:
+class TestUserAddToBasketFromProductPage:
 
     # регистрация пользователя
     @pytest.fixture(scope="function", autouse=True)
@@ -114,7 +114,7 @@ class TestUsersAddToBasketFromProductPage:
     # Возможность добавления товара в корзину и неизменность цены/названия товара после добавления
     @pytest.mark.need_review
     @pytest.mark.parametrize('link', links)
-    def test_user_can_add_to_basket(self, browser, link):
+    def test_user_can_add_product_to_basket (self, browser, link):
         page = PageObject(browser, link)
         page.open()
         page.add_to_basket()
