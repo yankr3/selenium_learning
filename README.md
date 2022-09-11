@@ -1,8 +1,13 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=This+is+Selenium's+repository)](https://git.io/typing-svg)
-
-[File **test_main_page.py** open link and check can go to login page.
-In login page going to check an availability authorization and registration forms.]
-
-[File **test_main_page.py** tests links from list]
-
-[In **Pages** directory is tests for pages]
+# Проект по тестированию веб-страниц 
+**Описание**: проект создан для тестирования веб-страниц с помощью фреймворка Selenium, был создан в рамках курса на платформе Stepik.
+***
+**Суть**: в проекте два файла для запуска тестов.<br/>
+В файле test_main_page.py тестируем страницу, записанную в перменную links. Тесты описаны в самом файле.<br/>
+В файле test_product_page.py тестируем сразу несколько страниц, опредленных в списке links, а также работаем с маркировкой тестов. Тесты можно запускать группами, по маркерам, или сразу все. <br/>
+Тесты промаркированы по смыслу, а так же имеют маркер need_review для рецензента с платформы Stepik.<br/>
+Для тестов можно задать дополнительные параметры - браузер и язык, по умолчанию - chrome и ru (это описано в файле conftest).<br/>
+Для корректной работы проекта, помимо пакетов Python, должны быть установлены драйверы браузеров.
+***
+**Для запуска**: ввести в терминал команду <br/>
+pytest -s -v -m МАРКЕР ИМЯ_ФАЙЛА_С_ТЕСТАМИ.py<br/>
+При необходимости в качестве параметров можно указать браузер и язык.
